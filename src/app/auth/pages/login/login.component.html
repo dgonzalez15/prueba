@@ -1,0 +1,22 @@
+
+
+<form (ngSubmit)="login()"  #formLogin="ngForm" class="custom-form">
+  <div class="input-group">
+    <label for="email" *ngIf="(form | json)!= '{}'" class="form-label">Correo</label>
+    <input type="email" id="email"  #emailInput="ngModel" name="email" class="form-input" required [(ngModel)]="register.user">
+    <p class="message--error" [class.invalid]="emailInput.invalid">Mensajes de error</p>
+  </div>
+  <div class="input-group">
+    <label for="password" class="form-label">Contraseña</label>
+    <input type="password" class="form-input" id="password" name="password" required [(ngModel)]="register.password">
+    <p class="message--error" [class.invalid]="emailInput.invalid">Mensajes de error</p>
+  </div>
+
+<mat-grid-list cols="1">
+  <mat-grid-tile>
+    <button (click)="login()"
+    mat-raised-button color="primary">
+      Ingresar
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>

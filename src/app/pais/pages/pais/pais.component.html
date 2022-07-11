@@ -1,0 +1,38 @@
+
+<h2>Por País</h2>
+<mat-divider></mat-divider>
+<br>
+
+<div fxLayout="column" >
+  <div fxLayout.xs="column">
+   <app-pais-input (onEnter)="buscar($event)"
+    (onDebounce)="sugerencias($event)"
+    placeholder="Buscar país..."></app-pais-input>
+  </div>
+</div>
+<hr>
+
+<ul class="list-group">
+  <li *ngFor="let pais of paisesSugeridos"
+      class="list-group-item-action list-group-item">
+    <a  class="nav-link"
+    [routerLink]="['./pais', pais.alpha2Code]">
+      {{ pais.name }}
+    </a>
+  </li>
+</ul>
+
+<!-- aqui donde dice *ngIf es para el error que
+lo hicimos en pais.service.ts -->
+<div  *ngIf="hayError"
+  class="alert alert-danger">
+  No se encontró nada con el término {{termino}}
+</div>
+
+
+<div *ngIf="paises.length > 0" class="row">
+  <div class="col">
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+  </div>
+</div>
+
